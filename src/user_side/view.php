@@ -367,106 +367,273 @@ include("../includes/header.php");
                   <p class="card-description">
                     Review <code>your votes</code>
                   </p>
-                  <div class="col-lg-12 grid-margin stretch-card">
-                  <div class="card">
-                    <div class="card-body">
-                    <img src="../assets/images/president.png" alt="" width = 30 height = 30>
-                    <label for="" style = "color: blue;">President:</label>
-                    <h9><?php echo $pres?></9>
                   
+                  <div class="vote-summary-banner mb-4">
+                    <div class="banner-content">
+                      <i class="mdi mdi-check-circle-outline banner-icon"></i>
+                      <div>
+                        <h3>Your Vote Has Been Recorded</h3>
+                        <p>Thank you for participating in the Student Government election</p>
+                      </div>
                     </div>
                   </div>
-                  </div>
                   
-                  <div class="col-lg-12 grid-margin stretch-card">
-                  <div class="card">
-                    <div class="card-body">
-                    <img src="../assets/images/vice.png" alt="" width = 30 height = 30>
-                    <label for="" style = "color: blue;">Vice President:</label>
-                    <h9><?php echo $vice?></9>
-                  
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="card shadow-sm position-card">
+                        <div class="card-body d-flex align-items-center">
+                          <div class="position-icon me-3">
+                            <img src="../assets/images/president.png" alt="President" class="position-icon-img">
+                          </div>
+                          <div>
+                            <h5 class="position-title mb-1">President</h5>
+                            <p class="position-value mb-0"><?php echo $pres?></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                      <div class="card shadow-sm position-card">
+                        <div class="card-body d-flex align-items-center">
+                          <div class="position-icon me-3">
+                            <img src="../assets/images/vice.png" alt="Vice President" class="position-icon-img">
+                          </div>
+                          <div>
+                            <h5 class="position-title mb-1">Vice President</h5>
+                            <p class="position-value mb-0"><?php echo $vice?></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                      <div class="card shadow-sm position-card">
+                        <div class="card-body d-flex align-items-center">
+                          <div class="position-icon me-3">
+                            <img src="../assets/images/sec.png" alt="Secretary" class="position-icon-img">
+                          </div>
+                          <div>
+                            <h5 class="position-title mb-1">Secretary</h5>
+                            <p class="position-value mb-0"><?php echo $sec?></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                      <div class="card shadow-sm position-card">
+                        <div class="card-body d-flex align-items-center">
+                          <div class="position-icon me-3">
+                            <img src="../assets/images/treasure.png" alt="Treasurer" class="position-icon-img">
+                          </div>
+                          <div>
+                            <h5 class="position-title mb-1">Treasurer</h5>
+                            <p class="position-value mb-0"><?php echo $trea?></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                      <div class="card shadow-sm position-card">
+                        <div class="card-body d-flex align-items-center">
+                          <div class="position-icon me-3">
+                            <img src="../assets/images/auditor.png" alt="Auditor" class="position-icon-img">
+                          </div>
+                          <div>
+                            <h5 class="position-title mb-1">Auditor</h5>
+                            <p class="position-value mb-0"><?php echo $aud?></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                      <div class="card shadow-sm position-card">
+                        <div class="card-body d-flex align-items-center">
+                          <div class="position-icon me-3">
+                            <img src="../assets/images/public.png" alt="Public Information Officers" class="position-icon-img">
+                          </div>
+                          <div>
+                            <h5 class="position-title mb-1">Public Information Officers</h5>
+                            <p class="position-value mb-0">
+                              <span class="candidate-item">(1) <?php echo $pio1?></span> | 
+                              <span class="candidate-item">(2) <?php echo $pio2?></span> | 
+                              <span class="candidate-item">(3) <?php echo $pio3?></span> | 
+                              <span class="candidate-item">(4) <?php echo $pio4?></span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                      <div class="card shadow-sm position-card">
+                        <div class="card-body d-flex align-items-center">
+                          <div class="position-icon me-3">
+                            <img src="../assets/images/peace.png" alt="Peace Officers" class="position-icon-img">
+                          </div>
+                          <div>
+                            <h5 class="position-title mb-1">Peace Officers</h5>
+                            <p class="position-value mb-0">
+                              <span class="candidate-item">(1) <?php echo $po1?></span> | 
+                              <span class="candidate-item">(2) <?php echo $po2?></span> | 
+                              <span class="candidate-item">(3) <?php echo $po3?></span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                      <div class="card shadow-sm position-card">
+                        <div class="card-body d-flex align-items-center">
+                          <div class="position-icon me-3">
+                            <img src="../assets/images/peace.png" alt="Year Representative" class="position-icon-img">
+                          </div>
+                          <div>
+                            <h5 class="position-title mb-1">Year Representative</h5>
+                            <p class="position-value mb-0"><?php echo $rep ?></p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  </div>
-
-                  <div class="col-lg-12 grid-margin stretch-card">
-                  <div class="card">
-                    <div class="card-body">
-                    <img src="../assets/images/sec.png" alt="" width = 30 height = 30>
-                    <label for="" style = "color: blue;">Secretary:</label>
-                    <h9><?php echo $sec?></9>
                   
+                  <div class="card mt-4 mb-4 thank-you-card">
+                    <div class="card-body text-center">
+                      <div class="d-flex justify-content-center mb-3">
+                        <img src="../assets/logos.png" alt="Logo" class="me-3" width="50" height="50">
+                        <img src="../assets/icons/ssglogo.jpg" alt="SSG Logo" width="50" height="50">
+                      </div>
+                      <p class="thank-you-message">
+                        Thank you for voting in our school's Student Government election.<br>
+                        Your support is instrumental in electing representatives who will advocate for<br>
+                        the student body's interests and work towards enhancing our school experience.
+                      </p>
+                      <div class="mt-4">
+                        <a href="index.php" class="btn btn-primary btn-lg">
+                          <i class="mdi mdi-arrow-left me-2"></i>Back to Dashboard
+                        </a>
+                      </div>
                     </div>
                   </div>
-                  </div>
-
-                  <div class="col-lg-12 grid-margin stretch-card">
-                  <div class="card">
-                    <div class="card-body">
-                    <img src="../assets/images/treasure.png" alt="" width = 30 height = 30>
-                    <label for="" style = "color: blue;">Treasurer:</label>
-                    <h9><?php echo $trea?></9>
                   
-                    </div>
-                  </div>
-                  </div>
-
-                  <div class="col-lg-12 grid-margin stretch-card">
-                  <div class="card">
-                    <div class="card-body">
-                    <img src="../assets/images/auditor.png" alt="" width = 30 height = 30>
-                    <label for="" style = "color: blue;">Auditor:</label>
-                    <h9><?php echo $aud?></9>
-                  
-                    </div>
-                  </div>
-                  </div>
-
-                  <div class="col-lg-12 grid-margin stretch-card">
-                  <div class="card">
-                    <div class="card-body">
-                    <img src="../assets/images/public.png" alt="" width = 30 height = 30>
-                    <label for="" style = "color: blue;">Public Information Officers:</label>
-                    <h9>(1)<?php echo $pio1?></h9> <h9>(2)<?php echo $pio2?></h9> <h9>(3)<?php echo $pio3?></h9><h9>(4)<?php echo $pio4?></9>
-                  
-                    </div>
-                  </div>
-                  </div>
-
-                  <div class="col-lg-12 grid-margin stretch-card">
-                  <div class="card">
-                    <div class="card-body">
-                    <img src="../assets/images/peace.png" alt="" width = 30 height = 30>
-                    <label for="" style = "color: blue;">Peace Officers:</label>
-                    <h9>(1)<?php echo $po1?></h9> <h9>(2)<?php echo $po2?></h9> <h9>(3)<?php echo $po3?></h9>
-                  
-                    </div>
-                  </div>
-                  </div>
-
-                  <div class="col-lg-12 grid-margin stretch-card">
-                  <div class="card">
-                    <div class="card-body">
-                    <img src="../assets/images/peace.png" alt="" width = 30 height = 30>
-                    <label for="" style = "color: blue;">Year Representative:</label>
-                    <h9><?php echo $rep ?></h9>
-                  
-                    </div>
-                  </div>
-                  </div>
-
-                  <div class="col-lg-12 grid-margin stretch-card">
-                  <div class="card">
-                    <div class="card-body">
-                    <img src="../assets/logos.png" alt="" width = 40 height = 40 style = "">
-                    <img src="../assets/icons/ssglogo.jpg" alt="" width = 40 height = 40 style = "">
-                    <br><br>
-                    <label for="">Thank you for voting in our school's Student Government election.<br> Your support is instrumental in electing representatives who will advocate for <br>the student body's interests and work towards enhancing our school experience. </label>
-                  
-                    </div>
-                  </div>
-                  </div>
-                  
+                  <style>
+                    .vote-summary-banner {
+                      background: linear-gradient(135deg, #387ADF 0%, #5a9cff 100%);
+                      border-radius: 10px;
+                      padding: 20px;
+                      color: white;
+                      box-shadow: 0 4px 15px rgba(56, 122, 223, 0.2);
+                    }
+                    
+                    .banner-content {
+                      display: flex;
+                      align-items: center;
+                    }
+                    
+                    .banner-icon {
+                      font-size: 3rem;
+                      margin-right: 20px;
+                    }
+                    
+                    .banner-content h3 {
+                      margin-bottom: 5px;
+                      font-weight: 600;
+                    }
+                    
+                    .banner-content p {
+                      margin-bottom: 0;
+                      opacity: 0.9;
+                    }
+                    
+                    .position-icon {
+                      width: 50px;
+                      height: 50px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      background-color: #f8f9fa;
+                      border-radius: 50%;
+                      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+                    }
+                    
+                    .position-icon-img {
+                      width: 30px;
+                      height: 30px;
+                      object-fit: contain;
+                    }
+                    
+                    .position-title {
+                      color: #387ADF;
+                      font-weight: 600;
+                      font-size: 1.1rem;
+                    }
+                    
+                    .position-value {
+                      font-size: 1rem;
+                      color: #333;
+                    }
+                    
+                    .candidate-item {
+                      display: inline-block;
+                      padding: 2px 5px;
+                      border-radius: 4px;
+                      background-color: #f8f9fa;
+                    }
+                    
+                    .thank-you-message {
+                      font-size: 1.1rem;
+                      color: #555;
+                      line-height: 1.6;
+                    }
+                    
+                    .position-card {
+                      border-radius: 8px;
+                      transition: all 0.3s ease;
+                      border: 1px solid rgba(0,0,0,0.05);
+                    }
+                    
+                    .position-card:hover {
+                      transform: translateY(-5px);
+                      box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+                    }
+                    
+                    .thank-you-card {
+                      background: linear-gradient(to right, #f8f9fa, #ffffff);
+                      border: none;
+                      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+                    }
+                    
+                    .btn-primary {
+                      background-color: #387ADF;
+                      border-color: #387ADF;
+                      padding: 10px 20px;
+                      font-weight: 500;
+                      transition: all 0.3s ease;
+                    }
+                    
+                    .btn-primary:hover {
+                      background-color: #2a5fbf;
+                      border-color: #2a5fbf;
+                      transform: translateY(-2px);
+                      box-shadow: 0 5px 10px rgba(56, 122, 223, 0.3);
+                    }
+                    
+                    @media (max-width: 768px) {
+                      .banner-content {
+                        flex-direction: column;
+                        text-align: center;
+                      }
+                      
+                      .banner-icon {
+                        margin-right: 0;
+                        margin-bottom: 15px;
+                      }
+                    }
+                  </style>
                   
                 </div>
               </div>

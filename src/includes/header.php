@@ -25,6 +25,7 @@
   <link rel="shortcut icon" href="../assets/logos.png" />
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     .btn-primary {
       background-color: #077504 !important;
