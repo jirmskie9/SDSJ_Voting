@@ -101,6 +101,32 @@ if (isset($_POST['filec'])) {
             $rescount = $conn->query($countsql);
             
             if($rescount){
+                // Update vote_counting table for each position
+                $updatePositions = array(
+                    "President" => $pres,
+                    "Vice President" => $vice,
+                    "Secretary" => $sec,
+                    "Treasurer" => $trea,
+                    "Auditor" => $aud,
+                    "PIO1" => $pio1,
+                    "PIO2" => $pio2,
+                    "PIO3" => $pio3,
+                    "PIO4" => $pio4,
+                    "Peace Officer 1" => $po1,
+                    "Peace Officer 2" => $po2,
+                    "Peace Officer 3" => $po3,
+                    "Grade 7 Representative" => $g7,
+                    "Grade 8 Representative" => $g8,
+                    "Grade 9 Representative" => $g9,
+                    "Grade 10 Representative" => $g10,
+                    "Grade 11 Representative" => $g11,
+                    "Grade 12 Representative" => $g12
+                );
+
+                foreach($updatePositions as $position => $name) {
+                    $updateVoteCount = "UPDATE vote_counting SET name = '$name' WHERE position = '$position' AND partylist = '$plist'";
+                    $conn->query($updateVoteCount);
+                }
 
                 $activity = "INSERT INTO activity_log (action, description, date_time) VALUES ('Update Partylist', 'Admin updated a Partylist', NOW())";
                 $result2 = $conn->query($activity);

@@ -266,6 +266,14 @@ if (!isset($_SESSION['email'])) {
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="enrolled_students.php" aria-expanded="false"
+              aria-controls="charts">
+              <i class="menu-icon mdi mdi-school"></i>
+              <span class="menu-title">Enrolled Students</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="logout.php" aria-expanded="false"
               aria-controls="charts">
               <i class="menu-icon mdi mdi-account-off"></i>
@@ -295,12 +303,14 @@ if (!isset($_SESSION['email'])) {
                       <input class="form-control" type="text" name="plist" placeholder="Partylist Name" required>
                     </div>
                     <div class="form-group">
-
                      <label for="">Slogan</label>
                     <textarea name="slogan" id="" class="form-control" style="height: 50px;"></textarea>
                     </div>
                     <div class="form-group">
-
+                      <label for="">Projects</label>
+                      <textarea name="projects" id="" class="form-control" style="height: 100px;" placeholder="Enter your projects and initiatives..."></textarea>
+                    </div>
+                    <div class="form-group">
                       <img src="../assets/images/president.png" alt="Candidates" width="30" height="30">
                       <input class="form-control" type="text" name="pres" placeholder="President"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
@@ -328,36 +338,26 @@ if (!isset($_SESSION['email'])) {
                     <div class="form-group">
                       <img src="../assets/images/public.png" alt="Candidates" width="30" height="30">
                       <label for="">Public Information Officers</label>
-                      <input class="form-control" type="text" name="pio1" placeholder="Public Information Officer 1"
-                        pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
-                      <br>
-                      <input class="form-control" type="text" name="pio2" placeholder="Public Information Officer 2"
-                        pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
-                      <br>
-                      <input class="form-control" type="text" name="pio3" placeholder="Public Information Officer 3"
-                        pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
-                      <br>
-                      <input class="form-control" type="text" name="pio4" placeholder="Public Information Officer 4"
-                        pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
-
+                      <div id="pio-container">
+                        <input class="form-control" type="text" name="pio1" placeholder="Public Information Officer 1"
+                          pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
+                      </div>
+                      <button type="button" class="btn btn-outline-primary btn-sm mt-2" id="add-pio-btn">Add PIO</button>
+                      <span id="pio-count" class="text-muted ms-2">1/4</span>
                     </div>
                     <div class="form-group">
                       <img src="../assets/images/peace.png" alt="Candidates" width="30" height="30">
                       <label for="">Peace Officers</label>
-
-                      <input class="form-control" type="text" name="po1" placeholder="Peace Officers 1"
-                        pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
-                      <br>
-                      <input class="form-control" type="text" name="po2" placeholder="Peace Officers 2"
-                        pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
-                      <br>
-                      <input class="form-control" type="text" name="po3" placeholder="Peace Officers 3"
-                        pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
-
+                      <div id="po-container">
+                        <input class="form-control" type="text" name="po1" placeholder="Peace Officer 1"
+                          pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
+                      </div>
+                      <button type="button" class="btn btn-outline-primary btn-sm mt-2" id="add-po-btn">Add PO</button>
+                      <span id="po-count" class="text-muted ms-2">1/3</span>
                     </div>
                     <div class="form-group">
                       <img src="../assets/images/rep.png" alt="Candidates" width="30" height="30">
-                      <label for="">Year Representatives</label>
+                      <label for="">Junior High School Representatives</label>
 
                       <input class="form-control" type="text" name="g7" placeholder="Grade 7 Representative"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
@@ -370,15 +370,40 @@ if (!isset($_SESSION['email'])) {
                       <br>
                       <input class="form-control" type="text" name="g10" placeholder="Grade 10 Representative"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
-                      <br>
-                      <input class="form-control" type="text" name="g11" placeholder="Grade 11 Representative"
-                        pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
-                      <br>
-                      <input class="form-control" type="text" name="g12" placeholder="Grade 12 Representative"
-                        pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
                     </div>
 
-
+                    <div class="form-group">
+                      <img src="../assets/images/rep.png" alt="Candidates" width="30" height="30">
+                      <label for="">Senior High School Representatives</label>
+                      
+                      <div class="mb-3">
+                        <label for="g11" class="form-label">Grade 11 Representative</label>
+                        <input class="form-control" type="text" name="g11" placeholder="Grade 11 Representative"
+                          pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
+                        <select class="form-select mt-2" name="g11_strand" required>
+                          <option value="" selected disabled>Select Strand</option>
+                          <option value="STEM">STEM (Science, Technology, Engineering, and Mathematics)</option>
+                          <option value="ABM">ABM (Accountancy, Business, and Management)</option>
+                          <option value="HUMSS">HUMSS (Humanities and Social Sciences)</option>
+                          <option value="GAS">GAS (General Academic Strand)</option>
+                          <option value="TVL">TVL (Technical-Vocational-Livelihood)</option>
+                        </select>
+                      </div>
+                      
+                      <div class="mb-3">
+                        <label for="g12" class="form-label">Grade 12 Representative</label>
+                        <input class="form-control" type="text" name="g12" placeholder="Grade 12 Representative"
+                          pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
+                        <select class="form-select mt-2" name="g12_strand" required>
+                          <option value="" selected disabled>Select Strand</option>
+                          <option value="STEM">STEM (Science, Technology, Engineering, and Mathematics)</option>
+                          <option value="ABM">ABM (Accountancy, Business, and Management)</option>
+                          <option value="HUMSS">HUMSS (Humanities and Social Sciences)</option>
+                          <option value="GAS">GAS (General Academic Strand)</option>
+                          <option value="TVL">TVL (Technical-Vocational-Livelihood)</option>
+                        </select>
+                      </div>
+                    </div>
 
                     <button type="submit" class="btn btn-primary me-2" name="filec">Submit</button>
                     <button class="btn btn-light">Cancel</button>
@@ -478,6 +503,61 @@ if (!isset($_SESSION['email'])) {
 
           // Initialize the timer on page load
           resetTimer();
+
+          // Dynamic input fields for PIO and PO
+          document.addEventListener('DOMContentLoaded', function() {
+            // PIO functionality
+            const pioContainer = document.getElementById('pio-container');
+            const addPioBtn = document.getElementById('add-pio-btn');
+            const pioCountSpan = document.getElementById('pio-count');
+            let pioCount = 1;
+
+            addPioBtn.addEventListener('click', function() {
+              if (pioCount < 4) {
+                pioCount++;
+                const newInput = document.createElement('input');
+                newInput.className = 'form-control mt-2';
+                newInput.type = 'text';
+                newInput.name = 'pio' + pioCount;
+                newInput.placeholder = 'Public Information Officer ' + pioCount;
+                newInput.pattern = '[A-Za-z]+ [A-Za-z]+';
+                newInput.title = 'Please enter a valid first name and last name';
+                newInput.required = true;
+                pioContainer.appendChild(newInput);
+                pioCountSpan.textContent = pioCount + '/4';
+                
+                if (pioCount === 4) {
+                  addPioBtn.disabled = true;
+                }
+              }
+            });
+
+            // PO functionality
+            const poContainer = document.getElementById('po-container');
+            const addPoBtn = document.getElementById('add-po-btn');
+            const poCountSpan = document.getElementById('po-count');
+            let poCount = 1;
+
+            addPoBtn.addEventListener('click', function() {
+              if (poCount < 3) {
+                poCount++;
+                const newInput = document.createElement('input');
+                newInput.className = 'form-control mt-2';
+                newInput.type = 'text';
+                newInput.name = 'po' + poCount;
+                newInput.placeholder = 'Peace Officer ' + poCount;
+                newInput.pattern = '[A-Za-z]+ [A-Za-z]+';
+                newInput.title = 'Please enter a valid first name and last name';
+                newInput.required = true;
+                poContainer.appendChild(newInput);
+                poCountSpan.textContent = poCount + '/3';
+                
+                if (poCount === 3) {
+                  addPoBtn.disabled = true;
+                }
+              }
+            });
+          });
         </script>
 </body>
 

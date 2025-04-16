@@ -271,6 +271,14 @@ if (!isset($_SESSION['email'])) {
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="enrolled_students.php" aria-expanded="false"
+              aria-controls="charts">
+              <i class="menu-icon mdi mdi-school"></i>
+              <span class="menu-title">Enrolled Students</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="logout.php" aria-expanded="false"
               aria-controls="charts">
               <i class="menu-icon mdi mdi-account-off"></i>
@@ -279,7 +287,7 @@ if (!isset($_SESSION['email'])) {
             </a>
 
           </li>
-          </li>
+         
 
 
         </ul>

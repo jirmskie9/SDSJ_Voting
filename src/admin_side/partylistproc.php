@@ -23,6 +23,9 @@ if (isset($_POST['filec'])) {
     $g11 = $_POST['g11'];
     $g12 = $_POST['g12'];
     $slogan = $_POST['slogan'];
+    $projects = $_POST['projects'];
+    $g11_strand = $_POST['g11_strand'];
+    $g12_strand = $_POST['g12_strand'];
 
     $checkSqlCandidates = "SELECT * FROM candidates 
     WHERE (pres = '$pres' 
@@ -43,7 +46,8 @@ if (isset($_POST['filec'])) {
       OR g10_rep = '$g10' 
       OR g11_rep = '$g11' 
       OR g12_rep = '$g12'
-      OR slogan = '$slogan')";
+      OR slogan = '$slogan'
+      OR projects = '$projects')";
 
 
     $checkSqlCandidate = "SELECT * FROM candidate 
@@ -64,8 +68,8 @@ if (isset($_POST['filec'])) {
 
     } else {
 
-        $sql = "INSERT INTO candidates (`partylist`, `pres`, `vice`, `sec`, `trea`, `aud`, `pio1`, `pio2`, `pio3`, `pio4`, `po1`, `po2`, `po3`, `g7_rep`, `g8_rep`, `g9_rep`, `g10_rep`, `g11_rep`, `g12_rep`, `date_time`, `slogan`)
-        VALUES ('$plist', '$pres', '$vice', '$sec', '$trea', '$aud', '$pio1', '$pio2', '$pio3', '$pio4', '$po1', '$po2', '$po3', '$g7', '$g8', '$g9', '$g10', '$g11', '$g12', NOW(), '$slogan')";
+        $sql = "INSERT INTO candidates (`partylist`, `pres`, `vice`, `sec`, `trea`, `aud`, `pio1`, `pio2`, `pio3`, `pio4`, `po1`, `po2`, `po3`, `g7_rep`, `g8_rep`, `g9_rep`, `g10_rep`, `g11_rep`, `g11_strand`, `g12_rep`, `g12_strand`, `date_time`, `slogan`, `projects`)
+        VALUES ('$plist', '$pres', '$vice', '$sec', '$trea', '$aud', '$pio1', '$pio2', '$pio3', '$pio4', '$po1', '$po2', '$po3', '$g7', '$g8', '$g9', '$g10', '$g11', '$g11_strand', '$g12', '$g12_strand', NOW(), '$slogan', '$projects')";
 
 
         $result = $conn->query($sql);
@@ -100,6 +104,7 @@ if (isset($_POST['filec'])) {
                         "INSERT INTO vote_counting (name, position, partylist, count) VALUES ('$g9', 'Grade 9 Representative', '$plist', 0)",
                         "INSERT INTO vote_counting (name, position, partylist, count) VALUES ('$g10', 'Grade 10 Representative', '$plist', 0)",
                         "INSERT INTO vote_counting (name, position, partylist, count) VALUES ('$g11', 'Grade 11 Representative', '$plist', 0)",
+                        
                         "INSERT INTO vote_counting (name, position, partylist, count) VALUES ('$g12', 'Grade 12 Representative', '$plist', 0)"
                     ];
 

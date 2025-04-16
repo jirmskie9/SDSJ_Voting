@@ -152,10 +152,9 @@ session_start();
                       <div class="card-body">
                         <form method="POST" action="registerproc.php">
                           <div class="form-group">
-                            <label for="example-text-input" class="form-control-label">Student ID:</label>
-                            <input type="text" class="form-control" name="studid" id="studid"
-                              placeholder="Ex. 2021-01916" pattern="\d{4}-\d{5}"
-                              title="Please enter a valid student ID in the format 'yyyy-xxxxx'" required>
+                            <label for="example-text-input" class="form-control-label">LRN:</label>
+                            <input type="text" class="form-control" name="lrn" id="studid"
+                              placeholder="" required>
                           </div>
                           <div class="form-group">
                             <input type="text" class="form-control" name="name" id="name"

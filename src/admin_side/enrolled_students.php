@@ -9,6 +9,82 @@ if (!isset($_SESSION['email'])) {
   header('location: ../login.php');
   exit();
 }
+
+// Handle Excel/CSV file upload
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['excel_file'])) {
+  $file = $_FILES['excel_file'];
+  $allowed_types = ['text/csv', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+  
+  if (!in_array($file['type'], $allowed_types)) {
+    $_SESSION['[status]'] = "Please upload a valid Excel or CSV file.";
+    $_SESSION['[status_code]'] = "error";
+    $_SESSION['[status_button]'] = "OK";
+  } else {
+    try {
+      $handle = fopen($file['tmp_name'], "r");
+      
+      // Skip header row
+      fgetcsv($handle);
+      
+      $success_count = 0;
+      $update_count = 0;
+      $error_count = 0;
+      
+      while (($data = fgetcsv($handle)) !== FALSE) {
+        if (count($data) >= 3) {
+          $lrn = mysqli_real_escape_string($conn, $data[0]);
+          $name = mysqli_real_escape_string($conn, $data[1]);
+          $year_level = mysqli_real_escape_string($conn, $data[2]);
+          
+          // Check if LRN already exists
+          $check_query = "SELECT student_id FROM students WHERE lrn = '$lrn'";
+          $check_result = mysqli_query($conn, $check_query);
+          
+          if (mysqli_num_rows($check_result) > 0) {
+            // Update existing record
+            $update_query = "UPDATE students SET name = '$name', year_level = '$year_level' WHERE lrn = '$lrn'";
+            if (mysqli_query($conn, $update_query)) {
+              $update_count++;
+            } else {
+              $error_count++;
+            }
+          } else {
+            // Insert new record
+            $insert_query = "INSERT INTO students (lrn, name, year_level) VALUES ('$lrn', '$name', '$year_level')";
+            if (mysqli_query($conn, $insert_query)) {
+              $success_count++;
+            } else {
+              $error_count++;
+            }
+          }
+        }
+      }
+      
+      fclose($handle);
+      
+      $_SESSION['[status]'] = "Successfully imported $success_count new students. Updated $update_count existing students. Failed to process $error_count records.";
+      $_SESSION['[status_code]'] = "success";
+      $_SESSION['[status_button]'] = "OK";
+    } catch (Exception $e) {
+      $_SESSION['[status]'] = "Error processing file: " . $e->getMessage();
+      $_SESSION['[status_code]'] = "error";
+      $_SESSION['[status_button]'] = "OK";
+    }
+  }
+  
+  header("Location: enrolled_students.php");
+  exit();
+}
+
+// Get all students
+$query = "SELECT * FROM students ORDER BY lrn ASC";
+$result = mysqli_query($conn, $query);
+$students = [];
+if ($result) {
+  while ($row = mysqli_fetch_assoc($result)) {
+    $students[] = $row;
+  }
+}
 ?>
 
 <body class="with-welcome-text">
@@ -287,7 +363,7 @@ if (!isset($_SESSION['email'])) {
             </a>
 
           </li>
-          </li>
+         
 
 
         </ul>
@@ -296,81 +372,76 @@ if (!isset($_SESSION['email'])) {
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-md-6 grid-margin stretch-card">
-              <div class="card">
+            <!-- Excel/CSV Upload Form -->
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card shadow-sm">
+                <div class="card-header bg-white py-3">
+                  <h4 class="card-title mb-0">
+                    <i class="mdi mdi-upload text-primary me-2"></i>Import Students from Excel/CSV
+                  </h4>
+                </div>
                 <div class="card-body">
-                  <h4 class="card-title">Manage Independent Candidates</h4>
-                  <p class="card-description">
-                    Enter valid data
+                  <p class="card-description text-muted">
+                    Upload an Excel or CSV file with student data. The file should have the following columns: LRN, Name, Year Level.
+                    <br>
+                    <strong>Note:</strong> If a student with the same LRN already exists, their information will be updated.
                   </p>
-                  <form class="forms-sample" method="POST" action="addind.php">
+                  <form action="" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
-                      <label for="exampleInputUsername1">Full Name:</label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" name="name"
-                        pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name" required>
+                      <label for="excel_file" class="form-label">Select Excel or CSV File</label>
+                      <input type="file" class="form-control" id="excel_file" name="excel_file" accept=".xls,.xlsx,.csv" required>
                     </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Running For:</label>
-                      <select class="form-control" id="position" name="position" required>
-                        <option value="President">President</option>
-                        <option value="Vice President">Vice President</option>
-                        <option value="Secretary">Secretary</option>
-                        <option value="Treasurer">Treasuser</option>
-                        <option value="Auditor">Auditor</option>
-                        <option value="PIO">Public Information Officers</option>
-                        <option value="PO">Peace Officer</option>
-                        <option value="Grade7">Grade 7 Representative</option>
-                        <option value="Grade8">Grade 8 Representative</option>
-                        <option value="Grade9">Grade 9 Representative</option>
-                        <option value="Grade10">Grade 10 Representative</option>
-                        <option value="Grade11">Grade 11 Representative</option>
-                        <option value="Grade12">Grade 12 Representative</option>
-                      </select>
-                    </div>
-
-
-                    <button type="submit" class="btn btn-primary me-2" name="save">Submit</button>
-
+                    <button type="submit" class="btn btn-primary mt-3">
+                      <i class="mdi mdi-upload me-1"></i> Import Students
+                    </button>
                   </form>
                 </div>
               </div>
             </div>
-            <div class="col-lg-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Added Independent Candidates</h4>
-                  <p class="card-description">
 
-
+            <!-- Students Table -->
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card shadow-sm">
+                <div class="card-header bg-white py-3">
+                  <h4 class="card-title mb-0">
+                    <i class="mdi mdi-table text-primary me-2"></i>View Enrolled Students
+                  </h4>
+                  <p class="card-description text-muted mb-0">
+                    List of all enrolled students in the system
                   </p>
+                </div>
+                <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
+                    <table class="table table-hover">
+                      <thead class="table-light">
                         <tr>
-                          <th></th>
+                          <th>LRN</th>
                           <th>Name</th>
-                          <th>Date & Time Added</th>
+                          <th>Year Level</th>
                         </tr>
                       </thead>
-                      <?php
-                      // Fetch candidate data from the database
-                      $query = "SELECT * FROM candidate";  // Correct table name
-                      $result = mysqli_query($conn, $query);
-
-                      // Loop through the data and populate the table
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        echo '<tbody>';
-                        echo '<tr>';
-                        echo '<td class="py-1"><img src="../assets/images/ssglogo.png" alt="image" /></td>';
-                        echo '<td>' . $row['name'] . '</td>';
-                        echo '<td>' . $row['date_time'] . '</td>';
-                        echo '<td>';
-                        echo '<a class="btn btn-danger btn-sm" href="#" onclick="setModalData(' . $row['id'] . ', \'' . $row['name'] . '\')" data-toggle="modal" data-target="#likeModal">Delete</a>';
-                        echo '</td>';
-                        echo '</tr>';
-                        echo '</tbody>';
-                      }
-                      ?>
+                      <tbody>
+                        <?php if (count($students) > 0): ?>
+                          <?php foreach ($students as $student): ?>
+                            <tr>
+                              <td><?php echo htmlspecialchars($student['lrn']); ?></td>
+                              <td><?php echo htmlspecialchars($student['name']); ?></td>
+                              <td>
+                                <span class="badge bg-info"><?php echo htmlspecialchars($student['year_level']); ?></span>
+                              </td>
+                            </tr>
+                          <?php endforeach; ?>
+                        <?php else: ?>
+                          <tr>
+                            <td colspan="3" class="text-center py-4">
+                              <div class="d-flex flex-column align-items-center">
+                                <i class="mdi mdi-account-multiple-outline text-muted" style="font-size: 3rem;"></i>
+                                <p class="mt-2 mb-0">No students found</p>
+                              </div>
+                            </td>
+                          </tr>
+                        <?php endif; ?>
+                      </tbody>
                     </table>
                   </div>
                 </div>

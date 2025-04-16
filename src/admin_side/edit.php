@@ -381,19 +381,19 @@ if (!isset($_SESSION['email'])) {
                       <label for="" style="color: blue;">Public Information Officers</label>
                       <input class="form-control" type="text" name="pio1" placeholder="Public Information Officer 1"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name"
-                        value="<?php echo $pio1 ?>" required>
+                        value="<?php echo $pio1 ?>">
                       <br>
                       <input class="form-control" type="text" name="pio2" placeholder="Public Information Officer 2"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name"
-                        value="<?php echo $pio2 ?>" required>
+                        value="<?php echo $pio2 ?>">
                       <br>
                       <input class="form-control" type="text" name="pio3" placeholder="Public Information Officer 3"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name"
-                        value="<?php echo $pio3 ?>" required>
+                        value="<?php echo $pio3 ?>">
                       <br>
                       <input class="form-control" type="text" name="pio4" placeholder="Public Information Officer 4"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name"
-                        value="<?php echo $pio4 ?>" required>
+                        value="<?php echo $pio4 ?>">
 
                     </div>
                     <div class="form-group">
@@ -402,15 +402,15 @@ if (!isset($_SESSION['email'])) {
 
                       <input class="form-control" type="text" name="po1" placeholder="Peace Officers 1"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name"
-                        value="<?php echo $po1 ?>" required>
+                        value="<?php echo $po1 ?>">
                       <br>
                       <input class="form-control" type="text" name="po2" placeholder="Peace Officers 2"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name"
-                        value="<?php echo $po2 ?>" required>
+                        value="<?php echo $po2 ?>">
                       <br>
                       <input class="form-control" type="text" name="po3" placeholder="Peace Officers 3"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name"
-                        value="<?php echo $po3 ?>" required>
+                        value="<?php echo $po3 ?>">
 
                     </div>
                     <div class="form-group">
@@ -419,32 +419,32 @@ if (!isset($_SESSION['email'])) {
 
                       <input class="form-control" type="text" name="g7" placeholder="Grade 7 Representative"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name"
-                        value="<?php echo $g7 ?>" required>
+                        value="<?php echo $g7 ?>">
                       <br>
                       <label for="" style="color: blue;">Grade 8</label>
                       <input class="form-control" type="text" name="g8" placeholder="Grade 8 Representative"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name"
-                        value="<?php echo $g8 ?>" required>
+                        value="<?php echo $g8 ?>">
                       <br>
                       <label for="" style="color: blue;">Grade 9</label>
                       <input class="form-control" type="text" name="g9" placeholder="Grade 9 Representative"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name"
-                        value="<?php echo $g9 ?>" required>
+                        value="<?php echo $g9 ?>">
                       <br>
                       <label for="" style="color: blue;">Grade 10</label>
                       <input class="form-control" type="text" name="g10" placeholder="Grade 10 Representative"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name"
-                        value="<?php echo $g10 ?>" required>
+                        value="<?php echo $g10 ?>">
                       <br>
                       <label for="" style="color: blue;">Grade 11</label>
                       <input class="form-control" type="text" name="g11" placeholder="Grade 11 Representative"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name"
-                        value="<?php echo $g11 ?>" required>
+                        value="<?php echo $g11 ?>"d>
                       <br>
                       <label for="" style="color: blue;">Grade 12</label>
                       <input class="form-control" type="text" name="g12" placeholder="Grade 12 Representative"
                         pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter a valid first name and last name"
-                        value="<?php echo $g12 ?>" required>
+                        value="<?php echo $g12 ?>">
                     </div>
 
 

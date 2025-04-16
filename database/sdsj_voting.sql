@@ -296,6 +296,22 @@ INSERT INTO `signal_db` (`signal_id`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `students`
+--
+
+CREATE TABLE `students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lrn` varchar(12) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `year_level` int(11) NOT NULL,
+  `date_added` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `lrn` (`lrn`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 

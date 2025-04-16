@@ -373,6 +373,14 @@ function getCurrentDate()
               <i class="menu-arrow"></i>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="enrolled_students.php" aria-expanded="false"
+              aria-controls="charts">
+              <i class="menu-icon mdi mdi-school"></i>
+              <span class="menu-title">Enrolled Students</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="logout.php" aria-expanded="false"
@@ -546,10 +554,8 @@ function getCurrentDate()
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                   <div>
-                                    <h4 class="card-title card-title-dash">Pending Accounts</h4>
-                                    <p class="card-subtitle card-subtitle-dash">Check here if student information
-                                      enrolled on SY. 2023-2024. You have <span
-                                        class="badge bg-primary"><?php echo $total_pending ?></span> Account(s) Pending
+                                   
+                                  
                                     </p>
                                   </div>
                                 </div>
@@ -565,91 +571,7 @@ function getCurrentDate()
                                   </button>
                                 </div>
 
-                                <div class="row mt-4">
-                                  <div class="col-12">
-                                    <div class="card card-rounded">
-                                      <div class="card-body">
-                                        <div class="card-body">
-                                          <div class="d-sm-flex justify-content-between align-items-start">
-                                            <div>
-                                              <h4 class="card-title card-title-dash">Student Accounts</h4>
-                                              <p class="card-subtitle card-subtitle-dash">List of all student accounts
-                                                in the system</p>
-                                            </div>
-                                            <div>
-                                             
-                                            </div>
-                                          </div>
-
-                                          <div class="table-responsive mt-3">
-                                            <table class="table table-hover">
-                                              <thead class="bg-light">
-                                                <tr>
-                                                 
-                                                  <th style="width: 15%">Student ID</th>
-                                                  <th style="width: 40%">Name</th>
-                                                  <th style="width: 15%">Grade</th>
-                                                  <th style="width: 15%">Email</th>
-                                                  <th style="width: 10%">Action</th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                <?php
-                                                include('../dbcon.php');
-
-                                                $sql = "SELECT * FROM users WHERE confirmation = 'Verified' AND u_type != 'Admin'";
-                                                $result = $conn->query($sql);
-
-                                                if ($result->num_rows > 0) {
-                                                  while ($row = $result->fetch_assoc()) {
-                                                    ?>
-                                                    <tr>
-                                                      
-                                                      <td>
-                                                        <div class="d-flex align-items-center">
-                                                          <div class="me-2">
-                                                            <i class="mdi mdi-account-school text-primary"></i>
-                                                          </div>
-                                                          <div>
-                                                            <h6 class="mb-0 fw-bold"><?php echo $row['student_id']; ?></h6>
-                                                            <small class="text-muted"><?php echo $row['u_type']; ?></small>
-                                                          </div>
-                                                        </div>
-                                                      </td>
-                                                      <td>
-                                                        <h6 class="mb-0 fw-bold"><?php echo $row['name']; ?></h6>
-                                                      </td>
-                                                      <td>
-                                                        <span
-                                                          class="badge bg-warning text-dark"><?php echo $row['grade']; ?></span>
-                                                      </td>
-                                                      <td>
-                                                        <span class="text-muted"><?php echo $row['email']; ?></span>
-                                                      </td>
-                                                      <td>
-                                                        <a class="btn btn-primary btn-sm text-white"
-                                                          href="confirmationproc.php?id=<?php echo $row['user_id']; ?>&name=<?php echo urlencode($row['name']); ?>&email=<?php echo urlencode($row['email']); ?>">
-                                                          <i class="mdi mdi-check-circle me-1"></i> Confirm
-                                                        </a>
-                                                      </td>
-                                                    </tr>
-                                                    <?php
-                                                  }
-                                                } else {
-                                                  echo '<tr><td colspan="6" class="text-center py-4">No pending accounts found</td></tr>';
-                                                }
-                                                ?>
-                                              </tbody>
-                                            </table>
-                                          </div>
-                                        </div>
-
-
-
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
+                                
                                 <div class="row mt-4">
                                   <div class="col-12">
                                     <div class="card card-rounded">

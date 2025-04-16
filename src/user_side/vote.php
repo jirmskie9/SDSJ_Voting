@@ -347,8 +347,9 @@ include("../includes/header.php");
 
                               while ($row = mysqli_fetch_assoc($candidatesResult)) {
                                 echo '<option class="fw-bold text-primary" value="' . $row['pres'] . '">' .
-                                  '&#128081; ' . $row['pres'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . ')</span> (' .
-                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)</option>';
+                                  '&#128081; ' . $row['pres'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . '</span>) (' .
+                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
 
                               // Fetch independent candidates running for 'President' from the 'candidate' table
@@ -358,7 +359,8 @@ include("../includes/header.php");
                               while ($row = mysqli_fetch_assoc($independentResult)) {
                                 echo '<option class="fw-bold text-danger" value="' . $row['name'] . '">' .
                                   '&#127775; ' . $row['name'] . ' - <span class="text-secondary">' . $row['slogan'] . '</span> (' .
-                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)</option>';
+                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
                               ?>
 
@@ -378,18 +380,20 @@ include("../includes/header.php");
 
                               while ($row = mysqli_fetch_assoc($candidatesResult)) {
                                 echo '<option class="fw-bold text-primary" value="' . $row['vice'] . '">' .
-                                  '&#128081; ' . $row['vice'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . ')</span> (' .
-                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)</option>';
+                                  '&#128081; ' . $row['vice'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . '</span>) (' .
+                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
 
-                              // Fetch independent candidates running for 'President' from the 'candidate' table
+                              // Fetch independent candidates running for 'Vice President' from the 'candidate' table
                               $independentQuery = "SELECT * FROM candidate WHERE running_for = 'Vice President'";
                               $independentResult = mysqli_query($conn, $independentQuery);
 
                               while ($row = mysqli_fetch_assoc($independentResult)) {
                                 echo '<option class="fw-bold text-danger" value="' . $row['name'] . '">' .
                                   '&#127775; ' . $row['name'] . ' - <span class="text-secondary">' . $row['slogan'] . '</span> (' .
-                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)</option>';
+                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
                               ?>
                             </select>
@@ -406,18 +410,20 @@ include("../includes/header.php");
 
                               while ($row = mysqli_fetch_assoc($candidatesResult)) {
                                 echo '<option class="fw-bold text-primary" value="' . $row['sec'] . '">' .
-                                  '&#128081; ' . $row['sec'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . ')</span> (' .
-                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)</option>';
+                                  '&#128081; ' . $row['sec'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . '</span>) (' .
+                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
 
-                              // Fetch independent candidates running for 'President' from the 'candidate' table
+                              // Fetch independent candidates running for 'Secretary' from the 'candidate' table
                               $independentQuery = "SELECT * FROM candidate WHERE running_for = 'Secretary'";
                               $independentResult = mysqli_query($conn, $independentQuery);
 
                               while ($row = mysqli_fetch_assoc($independentResult)) {
                                 echo '<option class="fw-bold text-danger" value="' . $row['name'] . '">' .
                                   '&#127775; ' . $row['name'] . ' - <span class="text-secondary">' . $row['slogan'] . '</span> (' .
-                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)</option>';
+                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
                               ?>
                             </select>
@@ -435,18 +441,20 @@ include("../includes/header.php");
 
                               while ($row = mysqli_fetch_assoc($candidatesResult)) {
                                 echo '<option class="fw-bold text-primary" value="' . $row['trea'] . '">' .
-                                  '&#128081; ' . $row['trea'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . ')</span> (' .
-                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)</option>';
+                                  '&#128081; ' . $row['trea'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . '</span>) (' .
+                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
 
-                              // Fetch independent candidates running for 'President' from the 'candidate' table
+                              // Fetch independent candidates running for 'Treasurer' from the 'candidate' table
                               $independentQuery = "SELECT * FROM candidate WHERE running_for = 'Treasurer'";
                               $independentResult = mysqli_query($conn, $independentQuery);
 
                               while ($row = mysqli_fetch_assoc($independentResult)) {
                                 echo '<option class="fw-bold text-danger" value="' . $row['name'] . '">' .
                                   '&#127775; ' . $row['name'] . ' - <span class="text-secondary">' . $row['slogan'] . '</span> (' .
-                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)</option>';
+                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
                               ?>
                             </select>
@@ -463,18 +471,20 @@ include("../includes/header.php");
 
                               while ($row = mysqli_fetch_assoc($candidatesResult)) {
                                 echo '<option class="fw-bold text-primary" value="' . $row['aud'] . '">' .
-                                  '&#128081; ' . $row['aud'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . ')</span> (' .
-                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)</option>';
+                                  '&#128081; ' . $row['aud'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . '</span>) (' .
+                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
 
-                              // Fetch independent candidates running for 'President' from the 'candidate' table
+                              // Fetch independent candidates running for 'Auditor' from the 'candidate' table
                               $independentQuery = "SELECT * FROM candidate WHERE running_for = 'Auditor'";
                               $independentResult = mysqli_query($conn, $independentQuery);
 
                               while ($row = mysqli_fetch_assoc($independentResult)) {
                                 echo '<option class="fw-bold text-danger" value="' . $row['name'] . '">' .
                                   '&#127775; ' . $row['name'] . ' - <span class="text-secondary">' . $row['slogan'] . '</span> (' .
-                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)</option>';
+                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
                               ?>
                             </select>
@@ -486,23 +496,25 @@ include("../includes/header.php");
                               <option value="" disabled selected>-- Select Candidate --</option>
                               <?php
                               // Fetch candidates from the 'candidates' table
-                              $candidatesQuery = "SELECT * FROM candidates";
+                              $candidatesQuery = "SELECT * FROM candidates WHERE pio1 IS NOT NULL AND pio1 != ''";
                               $candidatesResult = mysqli_query($conn, $candidatesQuery);
 
                               while ($row = mysqli_fetch_assoc($candidatesResult)) {
                                 echo '<option class="fw-bold text-primary" value="' . $row['pio1'] . '">' .
-                                  '&#128081; ' . $row['pio1'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . ')</span> (' .
-                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)</option>';
+                                  '&#128081; ' . $row['pio1'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . '</span>) (' .
+                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
 
-                              // Fetch independent candidates running for 'President' from the 'candidate' table
+                              // Fetch independent candidates running for 'PIO' from the 'candidate' table
                               $independentQuery = "SELECT * FROM candidate WHERE running_for = 'PIO'";
                               $independentResult = mysqli_query($conn, $independentQuery);
 
                               while ($row = mysqli_fetch_assoc($independentResult)) {
                                 echo '<option class="fw-bold text-danger" value="' . $row['name'] . '">' .
                                   '&#127775; ' . $row['name'] . ' - <span class="text-secondary">' . $row['slogan'] . '</span> (' .
-                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)</option>';
+                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
                               ?>
 
@@ -516,23 +528,25 @@ include("../includes/header.php");
                               <option value="" disabled selected>-- Select Candidate --</option>
                               <?php
                               // Fetch candidates from the 'candidates' table
-                              $candidatesQuery = "SELECT * FROM candidates";
+                              $candidatesQuery = "SELECT * FROM candidates WHERE pio2 IS NOT NULL AND pio2 != ''";
                               $candidatesResult = mysqli_query($conn, $candidatesQuery);
 
                               while ($row = mysqli_fetch_assoc($candidatesResult)) {
                                 echo '<option class="fw-bold text-primary" value="' . $row['pio2'] . '">' .
-                                  '&#128081; ' . $row['pio2'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . ')</span> (' .
-                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)</option>';
+                                  '&#128081; ' . $row['pio2'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . '</span>) (' .
+                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
 
-                              // Fetch independent candidates running for 'President' from the 'candidate' table
+                              // Fetch independent candidates running for 'PIO' from the 'candidate' table
                               $independentQuery = "SELECT * FROM candidate WHERE running_for = 'PIO'";
                               $independentResult = mysqli_query($conn, $independentQuery);
 
                               while ($row = mysqli_fetch_assoc($independentResult)) {
                                 echo '<option class="fw-bold text-danger" value="' . $row['name'] . '">' .
                                   '&#127775; ' . $row['name'] . ' - <span class="text-secondary">' . $row['slogan'] . '</span> (' .
-                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)</option>';
+                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
                               ?>
 
@@ -546,23 +560,25 @@ include("../includes/header.php");
                               <option value="" disabled selected>-- Select Candidate --</option>
                               <?php
                               // Fetch candidates from the 'candidates' table
-                              $candidatesQuery = "SELECT * FROM candidates";
+                              $candidatesQuery = "SELECT * FROM candidates WHERE pio3 IS NOT NULL AND pio3 != ''";
                               $candidatesResult = mysqli_query($conn, $candidatesQuery);
 
                               while ($row = mysqli_fetch_assoc($candidatesResult)) {
                                 echo '<option class="fw-bold text-primary" value="' . $row['pio3'] . '">' .
-                                  '&#128081; ' . $row['pio3'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . ')</span> (' .
-                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)</option>';
+                                  '&#128081; ' . $row['pio3'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . '</span>) (' .
+                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
 
-                              // Fetch independent candidates running for 'President' from the 'candidate' table
+                              // Fetch independent candidates running for 'PIO' from the 'candidate' table
                               $independentQuery = "SELECT * FROM candidate WHERE running_for = 'PIO'";
                               $independentResult = mysqli_query($conn, $independentQuery);
 
                               while ($row = mysqli_fetch_assoc($independentResult)) {
                                 echo '<option class="fw-bold text-danger" value="' . $row['name'] . '">' .
                                   '&#127775; ' . $row['name'] . ' - <span class="text-secondary">' . $row['slogan'] . '</span> (' .
-                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)</option>';
+                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
                               ?>
                             </select>
@@ -575,23 +591,25 @@ include("../includes/header.php");
                               <option value="" disabled selected>-- Select Candidate --</option>
                               <?php
                               // Fetch candidates from the 'candidates' table
-                              $candidatesQuery = "SELECT * FROM candidates";
+                              $candidatesQuery = "SELECT * FROM candidates WHERE pio4 IS NOT NULL AND pio4 != ''";
                               $candidatesResult = mysqli_query($conn, $candidatesQuery);
 
                               while ($row = mysqli_fetch_assoc($candidatesResult)) {
                                 echo '<option class="fw-bold text-primary" value="' . $row['pio4'] . '">' .
-                                  '&#128081; ' . $row['pio4'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . ')</span> (' .
-                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)</option>';
+                                  '&#128081; ' . $row['pio4'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . '</span>) (' .
+                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
 
-                              // Fetch independent candidates running for 'President' from the 'candidate' table
+                              // Fetch independent candidates running for 'PIO' from the 'candidate' table
                               $independentQuery = "SELECT * FROM candidate WHERE running_for = 'PIO'";
                               $independentResult = mysqli_query($conn, $independentQuery);
 
                               while ($row = mysqli_fetch_assoc($independentResult)) {
                                 echo '<option class="fw-bold text-danger" value="' . $row['name'] . '">' .
                                   '&#127775; ' . $row['name'] . ' - <span class="text-secondary">' . $row['slogan'] . '</span> (' .
-                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)</option>';
+                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
                               ?>
 
@@ -604,23 +622,25 @@ include("../includes/header.php");
                               <option value="" disabled selected>-- Select Candidate --</option>
                               <?php
                               // Fetch candidates from the 'candidates' table
-                              $candidatesQuery = "SELECT * FROM candidates";
+                              $candidatesQuery = "SELECT * FROM candidates WHERE po1 IS NOT NULL AND po1 != ''";
                               $candidatesResult = mysqli_query($conn, $candidatesQuery);
 
                               while ($row = mysqli_fetch_assoc($candidatesResult)) {
                                 echo '<option class="fw-bold text-primary" value="' . $row['po1'] . '">' .
-                                  '&#128081; ' . $row['po1'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . ')</span> (' .
-                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)</option>';
+                                  '&#128081; ' . $row['po1'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . '</span>) (' .
+                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
 
-                              // Fetch independent candidates running for 'President' from the 'candidate' table
+                              // Fetch independent candidates running for 'PO' from the 'candidate' table
                               $independentQuery = "SELECT * FROM candidate WHERE running_for = 'PO'";
                               $independentResult = mysqli_query($conn, $independentQuery);
 
                               while ($row = mysqli_fetch_assoc($independentResult)) {
                                 echo '<option class="fw-bold text-danger" value="' . $row['name'] . '">' .
                                   '&#127775; ' . $row['name'] . ' - <span class="text-secondary">' . $row['slogan'] . '</span> (' .
-                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)</option>';
+                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
                               ?>
 
@@ -634,23 +654,25 @@ include("../includes/header.php");
                               <option value="" disabled selected>-- Select Candidate --</option>
                               <?php
                               // Fetch candidates from the 'candidates' table
-                              $candidatesQuery = "SELECT * FROM candidates";
+                              $candidatesQuery = "SELECT * FROM candidates WHERE po2 IS NOT NULL AND po2 != ''";
                               $candidatesResult = mysqli_query($conn, $candidatesQuery);
 
                               while ($row = mysqli_fetch_assoc($candidatesResult)) {
                                 echo '<option class="fw-bold text-primary" value="' . $row['po2'] . '">' .
-                                  '&#128081; ' . $row['po2'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . ')</span> (' .
-                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)</option>';
+                                  '&#128081; ' . $row['po2'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . '</span>) (' .
+                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
 
-                              // Fetch independent candidates running for 'President' from the 'candidate' table
+                              // Fetch independent candidates running for 'PO' from the 'candidate' table
                               $independentQuery = "SELECT * FROM candidate WHERE running_for = 'PO'";
                               $independentResult = mysqli_query($conn, $independentQuery);
 
                               while ($row = mysqli_fetch_assoc($independentResult)) {
                                 echo '<option class="fw-bold text-danger" value="' . $row['name'] . '">' .
                                   '&#127775; ' . $row['name'] . ' - <span class="text-secondary">' . $row['slogan'] . '</span> (' .
-                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)</option>';
+                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
                               ?>
                             </select>
@@ -662,23 +684,25 @@ include("../includes/header.php");
                               <option value="" disabled selected>-- Select Candidate --</option>
                               <?php
                               // Fetch candidates from the 'candidates' table
-                              $candidatesQuery = "SELECT * FROM candidates";
+                              $candidatesQuery = "SELECT * FROM candidates WHERE po3 IS NOT NULL AND po3 != ''";
                               $candidatesResult = mysqli_query($conn, $candidatesQuery);
 
                               while ($row = mysqli_fetch_assoc($candidatesResult)) {
                                 echo '<option class="fw-bold text-primary" value="' . $row['po3'] . '">' .
-                                  '&#128081; ' . $row['po3'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . ')</span> (' .
-                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)</option>';
+                                  '&#128081; ' . $row['po3'] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . '</span>) (' .
+                                  '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
 
-                              // Fetch independent candidates running for 'President' from the 'candidate' table
+                              // Fetch independent candidates running for 'PO' from the 'candidate' table
                               $independentQuery = "SELECT * FROM candidate WHERE running_for = 'PO'";
                               $independentResult = mysqli_query($conn, $independentQuery);
 
                               while ($row = mysqli_fetch_assoc($independentResult)) {
                                 echo '<option class="fw-bold text-danger" value="' . $row['name'] . '">' .
                                   '&#127775; ' . $row['name'] . ' - <span class="text-secondary">' . $row['slogan'] . '</span> (' .
-                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)</option>';
+                                  '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)' .
+                                  '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                               }
                               ?>
 
@@ -699,7 +723,9 @@ include("../includes/header.php");
                             while ($row = mysqli_fetch_assoc($candidatesResult)) {
                               $grade_rep = 'g' . $grade . '_rep';
                               echo '<option class="fw-semibold text-primary" value="' . $row[$grade_rep] . '">' .
-                                '&#128081; ' . $row[$grade_rep] . '</option>';
+                                '&#128081; ' . $row[$grade_rep] . ' (Slogan: <span class="text-secondary">' . $row['slogan'] . '</span>) (' .
+                                '<span class="fw-semibold text-success">Partylist: ' . $row['partylist'] . '</span>)' .
+                                '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                             }
 
                             // Fetch independent candidates running for the grade representative position
@@ -709,7 +735,9 @@ include("../includes/header.php");
 
                             while ($row = mysqli_fetch_assoc($independentResult)) {
                               echo '<option class="fw-semibold text-danger" value="' . $row['name'] . '">' .
-                                '&#127775; ' . $row['name'] . '</option>';
+                                '&#127775; ' . $row['name'] . ' - <span class="text-secondary">' . $row['slogan'] . '</span> (' .
+                                '<span class="fw-semibold text-warning">' . $row['partylist'] . '</span>)' .
+                                '<br><span class="text-info">Projects: ' . $row['projects'] . '</span></option>';
                             }
 
                             echo '</select>';

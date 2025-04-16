@@ -45,6 +45,7 @@ function getAttemptCount($email)
 
 $uemail = $_POST['email'];
 $pass = md5($_POST['pass']);
+$signal_id = '1';
 
 // Check if the user is on cooldown
 $cooldown_remaining = getCooldownRemaining($uemail);
@@ -57,7 +58,7 @@ if ($cooldown_remaining > 0) {
 }
 
 // Prepare and execute the SQL query to check the user credentials
-$sql = "SELECT * FROM users WHERE email = ? AND password = ? AND confirmation = 'Complete'";
+$sql = "SELECT * FROM users WHERE email = ? AND password = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('ss', $uemail, $pass);
 $stmt->execute();
@@ -68,32 +69,50 @@ $count = $result->num_rows;
 if ($count == 1) {
     $_SESSION['email'] = $uemail;
 
+    // Check if user has a 'Waiting' description in signal_db
+    $sql_signal = "SELECT * FROM signal_db WHERE signal_id = ? AND description = 'Waiting'";
+    $stmt_signal = $conn->prepare($sql_signal);
+    $stmt_signal->bind_param('i', $signal_id);
+    $stmt_signal->execute();
+    $result_signal = $stmt_signal->get_result();
+    $signal_count = $result_signal->num_rows;
 
-    if ($row['u_type'] == 'Admin') {
-        $_SESSION['[status]'] = "Welcome Admin";
+    // Only redirect to informations.php if user is a Voter AND signal is Waiting
+    if ($signal_count > 0 && $row['u_type'] == 'Voter') {
+        $_SESSION['[status]'] = "Your account is pending approval";
         $_SESSION['[status_code]'] = "info";
         $_SESSION['[status_button]'] = "Okay";
-        header('location: admin_side/admin.php');
+        header('location: informations.php');
         exit();
     }
-    // If the user is a Voter
-    elseif ($row['u_type'] == 'Voter') {
-        $name = $row['name'];
-        $insert = "INSERT INTO audit_log (name, description, date_time) VALUES (?, 'Has Logged in', NOW())";
-        $stmt3 = $conn->prepare($insert);
-        $stmt3->bind_param('s', $name);
-        $stmt3->execute();
-
-        $_SESSION['[status]'] = "Welcome Student";
-        $_SESSION['[status_code]'] = "info";
-        $_SESSION['[status_button]'] = "Okay";
-   
-        header("location: user_side/index.php");
-        exit();
-    }
-    // Default redirect
+    // If the user is not in 'Waiting' status, proceed with normal login
     else {
-        header('location: default.php');
+        if ($row['u_type'] == 'Admin') {
+            $_SESSION['[status]'] = "Welcome Admin";
+            $_SESSION['[status_code]'] = "info";
+            $_SESSION['[status_button]'] = "Okay";
+            header('location: admin_side/admin.php');
+            exit();
+        }
+        // If the user is a Voter
+        elseif ($row['u_type'] == 'Voter') {
+            $name = $row['name'];
+            $insert = "INSERT INTO audit_log (name, description, date_time) VALUES (?, 'Has Logged in', NOW())";
+            $stmt3 = $conn->prepare($insert);
+            $stmt3->bind_param('s', $name);
+            $stmt3->execute();
+
+            $_SESSION['[status]'] = "Welcome Student";
+            $_SESSION['[status_code]'] = "info";
+            $_SESSION['[status_button]'] = "Okay";
+       
+            header("location: user_side/index.php");
+            exit();
+        }
+        // Default redirect
+        else {
+            header('location: default.php');
+        }
     }
 } else {
     // Failed login attempt, update the attempt count and timestamp in the database

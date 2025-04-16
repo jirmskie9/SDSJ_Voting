@@ -14,13 +14,24 @@ $mail = new PHPMailer(true);
 $otp = rand(100000, 999999);
 
 if (isset($_POST['reg'])) {
-    $uid = $_POST['studid'];
+    $uid = $_POST['lrn'];
     $uname = $_POST['name'];
     $uemail = $_POST['email'];
     $upass = md5($_POST['pass']);
     $grade = $_POST['grade'];
     $bday = $_POST['bday'];
     
+    // Check if LRN and name exist in students table
+    $checkStudentSql = "SELECT * FROM students WHERE lrn = '$uid' AND name = '$uname'";
+    $checkStudentResult = $conn->query($checkStudentSql);
+    
+    if ($checkStudentResult->num_rows == 0) {
+        $_SESSION['[status]'] = "You are not enrolled in the school. Please contact the administrator.";
+        $_SESSION['[status_code]'] = "error";
+        $_SESSION['[status_button]'] = "Okay";
+        header("Location: register.php");
+        exit();
+    }
 
     // Check if user is not 12 years old or above
     $dob = new DateTime($bday);
@@ -49,13 +60,13 @@ if (isset($_POST['reg'])) {
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'jirmskie9@gmail.com';
-            $mail->Password   = 'trxe mzvu nzbf jndh';
+            $mail->Username   = 'kent29david@gmail.com';
+            $mail->Password   = 'ibpf nxhq izsn qbwm';
             $mail->SMTPSecure = 'tls';
             $mail->Port       = 587;
 
             // Recipients should not be enclosed in single quotes
-            $mail->setFrom('jirmskie9@gmail.com', 'Verification Code');
+            $mail->setFrom('kent29david@gmail.com', 'Verification Code');
             $mail->addAddress($uemail, $uname);
 
              // Disable SSL verification
@@ -70,7 +81,7 @@ if (isset($_POST['reg'])) {
 
             // Content
             $mail->isHTML(false);
-            $mail->Subject = 'SVNHS SSG Election SY. 2023-2024';
+            $mail->Subject = 'SDSJ SSG Election SY. 2024-2025';
             $mail->Body    = "Hello $uname, your verification code is: $otp";
 
             $mail->send();
