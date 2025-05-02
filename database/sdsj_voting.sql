@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2025 at 11:49 AM
+-- Generation Time: May 02, 2025 at 10:05 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -107,7 +107,22 @@ INSERT INTO `activity_log` (`activity_id`, `action`, `description`, `date_time`)
 (66, 'Update Partylist', 'Admin updated a Partylist', '2025-04-02 17:43:43'),
 (67, 'Added pedrina selection', 'Admin added a Partylist', '2025-04-02 17:47:25'),
 (68, 'Update Partylist', 'Admin updated a Partylist', '2025-04-02 17:47:44'),
-(69, 'Update Partylist', 'Admin updated a Partylist', '2025-04-02 17:48:14');
+(69, 'Update Partylist', 'Admin updated a Partylist', '2025-04-02 17:48:14'),
+(70, 'Added Pito Pito', 'Admin add independent candidate', '2025-04-04 10:45:22'),
+(71, 'Voting Stopped', 'The admin started the voting', '2025-04-04 10:58:37'),
+(72, 'Voting Started', 'The admin started the voting', '2025-04-04 10:58:48'),
+(73, 'Confirmed Account', 'Admin confirmed account pending', '2025-04-08 10:25:08'),
+(74, 'Added Cristy and Friends 2', 'Admin added a Partylist', '2025-04-08 10:28:27'),
+(75, 'Voting Stopped', 'The admin started the voting', '2025-04-08 10:30:14'),
+(76, 'Voting Started', 'The admin started the voting', '2025-04-08 10:30:55'),
+(77, 'Voting Stopped', 'The admin started the voting', '2025-04-15 11:03:00'),
+(78, 'Voting Started', 'The admin started the voting', '2025-04-15 11:38:36'),
+(79, 'Voting Stopped', 'The admin started the voting', '2025-04-15 11:39:45'),
+(80, 'Added Clarks', 'Admin added a Partylist', '2025-04-16 12:00:04'),
+(81, 'Voting Started', 'The admin started the voting', '2025-04-16 12:00:40'),
+(82, 'Update Partylist', 'Admin updated a Partylist', '2025-04-16 12:16:36'),
+(83, 'Update Partylist', 'Admin updated a Partylist', '2025-04-16 12:18:25'),
+(84, 'Voting Stopped', 'The admin started the voting', '2025-04-23 10:40:25');
 
 -- --------------------------------------------------------
 
@@ -180,7 +195,16 @@ INSERT INTO `audit_log` (`id`, `name`, `description`, `date_time`) VALUES
 (53, 'Jirmy Nacario', 'Has Logged in', '2025-04-02 17:28:24'),
 (54, 'Jirmy Nacario', 'Has Logged in', '2025-04-02 17:31:12'),
 (55, 'Jirmy Nacario', 'Has Logged in', '2025-04-02 17:39:03'),
-(56, 'Jirmy Nacario', 'Has Logged in', '2025-04-02 17:48:27');
+(56, 'Jirmy Nacario', 'Has Logged in', '2025-04-02 17:48:27'),
+(57, 'Jirmy Nacario', 'Has Logged in', '2025-04-04 10:59:00'),
+(58, 'Jirmy Nacario', 'Has Logged in', '2025-04-04 11:35:01'),
+(59, 'Jirmy Nacario', 'Has Logged in', '2025-04-08 10:18:21'),
+(60, 'Jirmy Nacario', 'Has Logged in', '2025-04-08 10:28:54'),
+(61, 'Jirmy Nacario', 'Has Logged in', '2025-04-08 10:31:07'),
+(62, 'Jirmy Nacario', 'Has Logged in', '2025-04-15 11:07:42'),
+(63, 'Jirmy Nacario', 'Has Logged in', '2025-04-15 11:07:51'),
+(64, 'Jirmy Nacario', 'Has Logged in', '2025-04-15 11:38:46'),
+(65, 'Jirmy Nacario', 'Has Logged in', '2025-04-16 12:00:52');
 
 -- --------------------------------------------------------
 
@@ -195,6 +219,13 @@ CREATE TABLE `candidate` (
   `partylist` varchar(100) NOT NULL,
   `date_time` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `candidate`
+--
+
+INSERT INTO `candidate` (`id`, `name`, `running_for`, `partylist`, `date_time`) VALUES
+(3, 'Pito Pito', 'President', 'Independent', '2025-04-04 10:45:22');
 
 -- --------------------------------------------------------
 
@@ -222,17 +253,22 @@ CREATE TABLE `candidates` (
   `g9_rep` varchar(50) DEFAULT NULL,
   `g10_rep` varchar(50) DEFAULT NULL,
   `g11_rep` varchar(50) DEFAULT NULL,
+  `g11_strand` varchar(60) DEFAULT NULL,
   `g12_rep` varchar(50) DEFAULT NULL,
+  `g12_strand` varchar(80) NOT NULL,
   `date_time` varchar(60) NOT NULL,
-  `slogan` text NOT NULL
+  `slogan` text NOT NULL,
+  `projects` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `candidates`
 --
 
-INSERT INTO `candidates` (`can_id`, `partylist`, `pres`, `vice`, `sec`, `trea`, `aud`, `pio1`, `pio2`, `pio3`, `pio4`, `po1`, `po2`, `po3`, `g7_rep`, `g8_rep`, `g9_rep`, `g10_rep`, `g11_rep`, `g12_rep`, `date_time`, `slogan`) VALUES
-(3, 'pedrina selection', 'Johnny Sins', 'John Wall', 'Stpehen curry', 'Michal Jordan', 'Ant Man', 'Derrick Rose', 'Paul George', 'Kevin Durant', 'Kevin Booker', 'Tracy Grady', 'Bech cheering', 'Dili Musali', 'LA Tenorio', 'Test lang', 'Ronaldo Carpio', 'Rodrigo Duterte', 'Inday Sar', 'Bbm bangag', '2025-04-02 17:47:25', 'Jack Suarez');
+INSERT INTO `candidates` (`can_id`, `partylist`, `pres`, `vice`, `sec`, `trea`, `aud`, `pio1`, `pio2`, `pio3`, `pio4`, `po1`, `po2`, `po3`, `g7_rep`, `g8_rep`, `g9_rep`, `g10_rep`, `g11_rep`, `g11_strand`, `g12_rep`, `g12_strand`, `date_time`, `slogan`, `projects`) VALUES
+(3, 'pedrina selection', 'Johnny Sins', 'John Wall', 'Stpehen curry', 'Michael Jordan', 'Ant Man', 'Derrick Rose', 'Paul George', 'Kevin Durant', 'Kevin Booker', 'Tracy Grady', 'Bech cheering', 'Dili Musali', 'LA Tenorio', 'Test lang', 'Ronaldo Carpio', 'Rodrigo Duterte', 'Inday Sar', NULL, 'Bbm bangag', '', '2025-04-02 17:47:25', 'Jack Suarez', NULL),
+(4, 'Cristy and Friends 2', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', 'Johnny Eleen', NULL, 'Johnny Eleen', '', '2025-04-08 10:28:27', 'Johnny Eleen', 'Johnny Eleen'),
+(5, 'Clarks', 'Clarks Manyak', 'Clarks Pisot', 'Clarks Steven', 'Clarks Steven', 'Clarks Steven', 'Clarks Steven', '', '', '', 'Clarks Steven', 'Clarks Steven', '', 'Clarks Steven', 'Clarks Steven', 'Clarks Steven', 'Clarks Steven', 'Clarks Steven', 'STEM', 'Clarks Steven', 'HUMSS', '2025-04-16 12:00:04', 'Bayot Pisot', 'Patuli ang mga bayot');
 
 -- --------------------------------------------------------
 
@@ -252,9 +288,10 @@ CREATE TABLE `login_attempts` (
 
 INSERT INTO `login_attempts` (`email`, `attempts`, `last_attempt`) VALUES
 ('', 1, '2024-12-17 19:42:33'),
-('admin@gmail.com', 5, '2025-04-02 16:34:54'),
+('admin@gmail.com', 19, '2025-04-24 21:13:13'),
 ('arjie@gmail.com', 4, '2025-04-01 13:11:19'),
-('jirmskie9@gmail.com', 14, '2025-04-02 16:19:30'),
+('jirmskie9@gmai.com', 1, '2025-04-08 10:28:42'),
+('jirmskie9@gmail.com', 15, '2025-04-15 11:02:10'),
 ('jirmyskie@gmail.com', 1, '2025-04-02 17:17:41');
 
 -- --------------------------------------------------------
@@ -291,7 +328,7 @@ CREATE TABLE `signal_db` (
 --
 
 INSERT INTO `signal_db` (`signal_id`, `description`) VALUES
-(1, 'Started');
+(1, 'Waiting');
 
 -- --------------------------------------------------------
 
@@ -300,14 +337,23 @@ INSERT INTO `signal_db` (`signal_id`, `description`) VALUES
 --
 
 CREATE TABLE `students` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lrn` varchar(12) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `year_level` int(11) NOT NULL,
-  `date_added` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `lrn` (`lrn`)
+  `student_id` int(11) NOT NULL,
+  `lrn` varchar(200) NOT NULL,
+  `name` varchar(80) NOT NULL,
+  `year_level` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`student_id`, `lrn`, `name`, `year_level`) VALUES
+(1, '130-0239-201', 'Jack Sparrow', '7'),
+(2, '130-0239-202', 'John Doe', '9'),
+(3, '130-0239-203', 'Mighty Jungle', '12'),
+(4, '130-0239-204', 'Seven Eleven', '8'),
+(5, '130-0239-205', 'Steve Kerr', '10'),
+(6, '130-0239-206', 'Elen Adarna', '11');
 
 -- --------------------------------------------------------
 
@@ -339,9 +385,11 @@ INSERT INTO `users` (`user_id`, `student_id`, `name`, `email`, `password`, `grad
 (5, '2023-67293', 'Elen Adarn', 'adarna@gmail.com', '5093186a2e133e6bf34d56f8b485076a', 9, '2006-03-16', 'Voter', 'To Vote', 'Verified', 561435),
 (6, '2024-01234', 'Crisjay Nacario', 'nacariozeyn@gmail.com', '5093186a2e133e6bf34d56f8b485076a', 12, '2003-02-12', 'Voter', 'To Vote', 'Verified', 292875),
 (7, '2021-02171', 'Test Lang', 'test@gmail.com', '94a181ffe31cf8516e4fa4e3f5297bd7', 9, '2002-02-12', 'Voter', 'To Vote', 'Pending', 342152),
-(8, '2021-02173', 'Jirmy Nacario', 'jirmskie9@gmail.com', '94a181ffe31cf8516e4fa4e3f5297bd7', 7, '2002-07-09', 'Voter', 'Voted', 'Complete', 676849),
+(8, '2021-02173', 'Jirmy Nacario', 'jirmskie9@gmail.com', '94a181ffe31cf8516e4fa4e3f5297bd7', 12, '2002-07-09', 'Voter', 'To Vote', 'Complete', 676849),
 (9, '2021-02932', 'KK Abol', 'kkabol@gmail.com', '94a181ffe31cf8516e4fa4e3f5297bd7', 9, '2012-06-12', 'Voter', 'To Vote', 'Complete', 741812),
-(10, '2023-00880', 'Arjie Delasalas', 'delasalas@gmail.com', '94a181ffe31cf8516e4fa4e3f5297bd7', 10, '2007-06-12', 'Voter', 'To Vote', 'Complete', 208674);
+(10, '2023-00880', 'Arjie Delasalas', 'delasalas@gmail.com', '94a181ffe31cf8516e4fa4e3f5297bd7', 10, '2007-06-12', 'Voter', 'To Vote', 'Complete', 208674),
+(11, '2023-19238', 'Lolita Tablingon', 'jirmy09@gmail.com', '94a181ffe31cf8516e4fa4e3f5297bd7', 9, '2002-07-09', 'Voter', 'To Vote', 'Complete', 826169),
+(12, '130-0239-206', 'Elen Adarna', 'elen@gmail.com', '94a181ffe31cf8516e4fa4e3f5297bd7', 8, '2002-07-09', 'Voter', 'To Vote', 'Verified', 696799);
 
 -- --------------------------------------------------------
 
@@ -370,14 +418,6 @@ CREATE TABLE `votes` (
   `status` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `votes`
---
-
-INSERT INTO `votes` (`vote_id`, `vote_name`, `grade`, `voted_pres`, `voted_vice`, `voted_sec`, `voted_trea`, `voted_aud`, `voted_pio1`, `voted_pio2`, `voted_pio3`, `voted_pio4`, `voted_po1`, `voted_po2`, `voted_po3`, `voted_representative`, `date_time`, `status`) VALUES
-(5, 'Jirmy Nacario', '', 'Johnny Sins', 'John Wall', 'Stpehen curry', 'Michal Jordan', 'Ant Man', 'Derrick Rose', 'Paul George', 'Kevin Durant', 'Kevin Booker', 'Tracy Grady', 'Bech cheering', 'Dili Musali', 'LA Tenorio', '2025-04-02 17:48:48', 'Confirmed'),
-(6, 'Jirmy Nacario', 'LHEKPQcrQc0nw1hTdWbME1+DQJ8kBh5KvNS0xda8TOA=', 'k8Lc8kEavec1QGgcoztfS6ecpetX3Hvd89lxrXAYtfQ=', 'RgEDAdwaHr2KPEdqOnvDJnBtmSEeJPXg12j3jeI1pLE=', 'IULdbl1C6iGOfwhQJqmjAemlNVRb66Cy4iqsOd2i1JM=', '2vT1+jLg6NGDjhLx21gfO28CT4yEndaGPiR7rFDxOJk=', 'ji81OSa1cwzQ3f7viU4U0qt+/5piDtXQJgIC7RJ6znc=', 'JiYBoBoZkC0Y3X9MumBYSIPMBSzCP1ntTrm2wUC9MbY=', '7h7dQS3FM/Yu1MT+UEuuJr+x1+KAmWK1gSuCGxQ1cLM=', 'NPYfs1EUS7dAGpUrNIgeTQx9y0eSGEShvdsmK404xMM=', 'V1aBYO9PQhrEEta6TCoFrQh46a4gT2oly5eGzFCMFhI=', 'e7S0JtF15aYnlRXhszern5AcbSlQY9fvzbT3vmKcuW4=', 'yMinZgSnzX0lG117thHmn7bv83vre7Yn13zSneErxHY=', 'S31nwZ/vcPUAY0SyAtEw3BfOD9t8iExdSv82bfM2/Kk=', 'olUeBlWfSJo2DvqoebsatEqcCkG9kKoUq7cS/eFe4w4=', '2025-04-02 17:48:53', 'Pending');
-
 -- --------------------------------------------------------
 
 --
@@ -397,24 +437,61 @@ CREATE TABLE `vote_counting` (
 --
 
 INSERT INTO `vote_counting` (`vote_id`, `name`, `position`, `partylist`, `count`) VALUES
-(1, 'Johnny Sins', 'President', 'pedrina selection', 1),
-(2, 'John Wall', 'Vice President', 'pedrina selection', 1),
-(3, 'Stpehen curry', 'Secretary', 'pedrina selection', 1),
-(4, 'Michal Jordan', 'Treasurer', 'pedrina selection', 1),
-(5, 'Ant Man', 'Auditor', 'pedrina selection', 1),
-(6, 'Derrick Rose', 'Public Information Officer', 'pedrina selection', 1),
-(7, 'Paul George', 'Public Information Officer', 'pedrina selection', 1),
-(8, 'Kevin Durant', 'Public Information Officer', 'pedrina selection', 1),
-(9, 'Kevin Booker', 'Public Information Officer', 'pedrina selection', 1),
-(10, 'Tracy Grady', 'Peace Officer', 'pedrina selection', 1),
-(11, 'Bech cheering', 'Peace Officer', 'pedrina selection', 1),
-(12, 'Dili Musali', 'Peace Officer', 'pedrina selection', 1),
-(13, 'LA Tenorio', 'Grade 7 Representative', 'pedrina selection', 1),
+(1, 'Johnny Sins', 'President', 'pedrina selection', 0),
+(2, 'John Wall', 'Vice President', 'pedrina selection', 0),
+(3, 'Stpehen curry', 'Secretary', 'pedrina selection', 0),
+(4, 'Michael Jordan', 'Treasurer', 'pedrina selection', 0),
+(5, 'Ant Man', 'Auditor', 'pedrina selection', 0),
+(6, 'Derrick Rose', 'Public Information Officer', 'pedrina selection', 0),
+(7, 'Paul George', 'Public Information Officer', 'pedrina selection', 0),
+(8, 'Kevin Durant', 'Public Information Officer', 'pedrina selection', 0),
+(9, 'Kevin Booker', 'Public Information Officer', 'pedrina selection', 0),
+(10, 'Tracy Grady', 'Peace Officer', 'pedrina selection', 0),
+(11, 'Bech cheering', 'Peace Officer', 'pedrina selection', 0),
+(12, 'Dili Musali', 'Peace Officer', 'pedrina selection', 0),
+(13, 'LA Tenorio', 'Grade 7 Representative', 'pedrina selection', 0),
 (14, 'Test lang', 'Grade 8 Representative', 'pedrina selection', 0),
 (15, 'Ronaldo Carpio', 'Grade 9 Representative', 'pedrina selection', 0),
 (16, 'Rodrigo Duterte', 'Grade 10 Representative', 'pedrina selection', 0),
 (17, 'Inday Sar', 'Grade 11 Representative', 'pedrina selection', 0),
-(18, 'Bbm bangag', 'Grade 12 Representative', 'pedrina selection', 0);
+(18, 'Bbm bangag', 'Grade 12 Representative', 'pedrina selection', 0),
+(19, 'Pito Pito', 'President', 'Independent', 0),
+(20, 'Johnny Eleen', 'President', 'Cristy and Friends 2', 0),
+(21, 'Johnny Eleen', 'Vice President', 'Cristy and Friends 2', 0),
+(22, 'Johnny Eleen', 'Secretary', 'Cristy and Friends 2', 0),
+(23, 'Johnny Eleen', 'Treasurer', 'Cristy and Friends 2', 0),
+(24, 'Johnny Eleen', 'Auditor', 'Cristy and Friends 2', 0),
+(25, 'Johnny Eleen', 'Public Information Officer', 'Cristy and Friends 2', 0),
+(26, 'Johnny Eleen', 'Public Information Officer', 'Cristy and Friends 2', 0),
+(27, 'Johnny Eleen', 'Public Information Officer', 'Cristy and Friends 2', 0),
+(28, 'Johnny Eleen', 'Public Information Officer', 'Cristy and Friends 2', 0),
+(29, 'Johnny Eleen', 'Peace Officer', 'Cristy and Friends 2', 0),
+(30, 'Johnny Eleen', 'Peace Officer', 'Cristy and Friends 2', 0),
+(31, 'Johnny Eleen', 'Peace Officer', 'Cristy and Friends 2', 0),
+(32, 'Johnny Eleen', 'Grade 7 Representative', 'Cristy and Friends 2', 0),
+(33, 'Johnny Eleen', 'Grade 8 Representative', 'Cristy and Friends 2', 0),
+(34, 'Johnny Eleen', 'Grade 9 Representative', 'Cristy and Friends 2', 0),
+(35, 'Johnny Eleen', 'Grade 10 Representative', 'Cristy and Friends 2', 0),
+(36, 'Johnny Eleen', 'Grade 11 Representative', 'Cristy and Friends 2', 0),
+(37, 'Johnny Eleen', 'Grade 12 Representative', 'Cristy and Friends 2', 0),
+(38, 'Clarks Manyak', 'President', 'Clarks', 0),
+(39, 'Clarks Pisot', 'Vice President', 'Clarks', 0),
+(40, 'Clarks Steven', 'Secretary', 'Clarks', 0),
+(41, 'Clarks Steven', 'Treasurer', 'Clarks', 0),
+(42, 'Clarks Steven', 'Auditor', 'Clarks', 0),
+(43, 'Clarks Steven', 'Public Information Officer', 'Clarks', 0),
+(44, '', 'Public Information Officer', 'Clarks', 0),
+(45, '', 'Public Information Officer', 'Clarks', 0),
+(46, '', 'Public Information Officer', 'Clarks', 0),
+(47, 'Clarks Steven', 'Peace Officer', 'Clarks', 0),
+(48, 'Clarks Steven', 'Peace Officer', 'Clarks', 0),
+(49, '', 'Peace Officer', 'Clarks', 0),
+(50, 'Clarks Steven', 'Grade 7 Representative', 'Clarks', 0),
+(51, 'Clarks Steven', 'Grade 8 Representative', 'Clarks', 0),
+(52, 'Clarks Steven', 'Grade 9 Representative', 'Clarks', 0),
+(53, 'Clarks Steven', 'Grade 10 Representative', 'Clarks', 0),
+(54, 'Clarks Steven', 'Grade 11 Representative', 'Clarks', 0),
+(55, 'Clarks Steven', 'Grade 12 Representative', 'Clarks', 0);
 
 -- --------------------------------------------------------
 
@@ -446,7 +523,9 @@ INSERT INTO `voting_activity` (`act_id`, `name`, `description`, `date_time`) VAL
 (10, '3mdKyEbiLzu+xxxkwQ+oacOduyclBW1ms3oWvcSnDPk=', 'has Voted', '2025-04-01 13:05:27'),
 (11, 'J0IctRERz8HovHDQd0LoZAujpviexRFug1O9ev0a2mY=', 'has Voted', '2025-04-02 16:58:45'),
 (12, 'k5sk0E56SZ8D7Z8xtJWVtkChgVTXF6GhQc/ofqXc4PA=', 'has Voted', '2025-04-02 17:18:18'),
-(13, 'FWMO2+D0X1as9KxyWXosrBbnSeph6eC4MDcQewxiUPw=', 'has Voted', '2025-04-02 17:48:53');
+(13, 'FWMO2+D0X1as9KxyWXosrBbnSeph6eC4MDcQewxiUPw=', 'has Voted', '2025-04-02 17:48:53'),
+(14, 'Zmlm5cv0G+gMKvV1bs+hpBpi84FZBFTCn9pKnkZxEuA=', 'has Voted', '2025-04-04 10:59:30'),
+(15, 'qP+dOYitjHGdscnuwf8sKI5rwE+1T7WwuvHNNljCN3c=', 'has Voted', '2025-04-16 12:10:01');
 
 --
 -- Indexes for dumped tables
@@ -495,6 +574,12 @@ ALTER TABLE `signal_db`
   ADD PRIMARY KEY (`signal_id`);
 
 --
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`student_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -526,25 +611,25 @@ ALTER TABLE `voting_activity`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `audit_log`
 --
 ALTER TABLE `audit_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `candidate`
 --
 ALTER TABLE `candidate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `candidates`
 --
 ALTER TABLE `candidates`
-  MODIFY `can_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `can_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pin`
@@ -559,28 +644,34 @@ ALTER TABLE `signal_db`
   MODIFY `signal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `votes`
 --
 ALTER TABLE `votes`
-  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `vote_counting`
 --
 ALTER TABLE `vote_counting`
-  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `voting_activity`
 --
 ALTER TABLE `voting_activity`
-  MODIFY `act_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `act_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
