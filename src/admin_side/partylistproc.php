@@ -28,44 +28,77 @@ if (isset($_POST['filec'])) {
     $g12_strand = $_POST['g12_strand'];
 
     $checkSqlCandidates = "SELECT * FROM candidates 
-    WHERE (pres = '$pres' 
-      OR vice = '$vice' 
-      OR sec = '$sec' 
-      OR trea = '$trea' 
-      OR aud = '$aud' 
-      OR pio1 = '$pio1' 
-      OR pio2 = '$pio2' 
-      OR pio3 = '$pio3' 
-      OR pio4 = '$pio4' 
-      OR po1 = '$po1' 
-      OR po2 = '$po2' 
-      OR po3 = '$po3' 
-      OR g7_rep = '$g7' 
-      OR g8_rep = '$g8' 
-      OR g9_rep = '$g9' 
-      OR g10_rep = '$g10' 
-      OR g11_rep = '$g11' 
-      OR g12_rep = '$g12'
-      OR slogan = '$slogan'
-      OR projects = '$projects')";
-
+    WHERE (pres = '$pres' AND pres IS NOT NULL AND pres != '')
+      OR (vice = '$vice' AND vice IS NOT NULL AND vice != '')
+      OR (sec = '$sec' AND sec IS NOT NULL AND sec != '')
+      OR (trea = '$trea' AND trea IS NOT NULL AND trea != '')
+      OR (aud = '$aud' AND aud IS NOT NULL AND aud != '')
+      OR (pio1 = '$pio1' AND pio1 IS NOT NULL AND pio1 != '')
+      OR (pio2 = '$pio2' AND pio2 IS NOT NULL AND pio2 != '')
+      OR (pio3 = '$pio3' AND pio3 IS NOT NULL AND pio3 != '')
+      OR (pio4 = '$pio4' AND pio4 IS NOT NULL AND pio4 != '')
+      OR (po1 = '$po1' AND po1 IS NOT NULL AND po1 != '')
+      OR (po2 = '$po2' AND po2 IS NOT NULL AND po2 != '')
+      OR (po3 = '$po3' AND po3 IS NOT NULL AND po3 != '')
+      OR (g7_rep = '$g7' AND g7_rep IS NOT NULL AND g7_rep != '')
+      OR (g8_rep = '$g8' AND g8_rep IS NOT NULL AND g8_rep != '')
+      OR (g9_rep = '$g9' AND g9_rep IS NOT NULL AND g9_rep != '')
+      OR (g10_rep = '$g10' AND g10_rep IS NOT NULL AND g10_rep != '')
+      OR (g11_rep = '$g11' AND g11_rep IS NOT NULL AND g11_rep != '')
+      OR (g12_rep = '$g12' AND g12_rep IS NOT NULL AND g12_rep != '')";
 
     $checkSqlCandidate = "SELECT * FROM candidate 
-   WHERE (name = '$pres' OR name = '$vice' OR name = '$sec' OR name = '$trea' OR name = '$aud' OR name = '$pio1' OR name = '$pio2' OR name = '$pio3' OR name = '$pio4' OR name = '$po1' OR name = '$po2' OR name = '$po3' OR name = '$g7' OR name = '$g8' OR name = '$g9'OR name = '$g10'
-   OR name = '$g11' OR name = '$g12')";
+    WHERE (name = '$pres' AND name IS NOT NULL AND name != '')
+      OR (name = '$vice' AND name IS NOT NULL AND name != '')
+      OR (name = '$sec' AND name IS NOT NULL AND name != '')
+      OR (name = '$trea' AND name IS NOT NULL AND name != '')
+      OR (name = '$aud' AND name IS NOT NULL AND name != '')
+      OR (name = '$pio1' AND name IS NOT NULL AND name != '')
+      OR (name = '$pio2' AND name IS NOT NULL AND name != '')
+      OR (name = '$pio3' AND name IS NOT NULL AND name != '')
+      OR (name = '$pio4' AND name IS NOT NULL AND name != '')
+      OR (name = '$po1' AND name IS NOT NULL AND name != '')
+      OR (name = '$po2' AND name IS NOT NULL AND name != '')
+      OR (name = '$po3' AND name IS NOT NULL AND name != '')
+      OR (name = '$g7' AND name IS NOT NULL AND name != '')
+      OR (name = '$g8' AND name IS NOT NULL AND name != '')
+      OR (name = '$g9' AND name IS NOT NULL AND name != '')
+      OR (name = '$g10' AND name IS NOT NULL AND name != '')
+      OR (name = '$g11' AND name IS NOT NULL AND name != '')
+      OR (name = '$g12' AND name IS NOT NULL AND name != '')";
 
+    // Execute both queries separately
+    $checkResultCandidates = $conn->query($checkSqlCandidates);
+    $checkResultCandidate = $conn->query($checkSqlCandidate);
 
-    $checkSql = "$checkSqlCandidates OR EXISTS ($checkSqlCandidate)";
+    $conflictingNames = array();
 
-    $checkResult = $conn->query($checkSql);
+    // Check candidates table
+    if ($checkResultCandidates->num_rows > 0) {
+        while($row = $checkResultCandidates->fetch_assoc()) {
+            foreach(['pres', 'vice', 'sec', 'trea', 'aud', 'pio1', 'pio2', 'pio3', 'pio4', 'po1', 'po2', 'po3', 'g7_rep', 'g8_rep', 'g9_rep', 'g10_rep', 'g11_rep', 'g12_rep'] as $position) {
+                if (isset($row[$position]) && !empty($row[$position]) && in_array($row[$position], [$pres, $vice, $sec, $trea, $aud, $pio1, $pio2, $pio3, $pio4, $po1, $po2, $po3, $g7, $g8, $g9, $g10, $g11, $g12])) {
+                    $conflictingNames[] = $row[$position] . " (in candidates table)";
+                }
+            }
+        }
+    }
 
-    if ($checkResult->num_rows > 0) {
-        $_SESSION['[status]'] = "There are names already filed candidacy!";
+    // Check candidate table
+    if ($checkResultCandidate->num_rows > 0) {
+        while($row = $checkResultCandidate->fetch_assoc()) {
+            if (isset($row['name']) && !empty($row['name']) && in_array($row['name'], [$pres, $vice, $sec, $trea, $aud, $pio1, $pio2, $pio3, $pio4, $po1, $po2, $po3, $g7, $g8, $g9, $g10, $g11, $g12])) {
+                $conflictingNames[] = $row['name'] . " (in candidate table)";
+            }
+        }
+    }
+
+    if (!empty($conflictingNames)) {
+        $_SESSION['[status]'] = "The following names are already filed for candidacy: " . implode(", ", array_unique($conflictingNames));
         $_SESSION['[status_code]'] = "error";
         $_SESSION['[status_button]'] = "Okay";
         header("Location: partylist.php");
         exit();
-
     } else {
 
         $sql = "INSERT INTO candidates (`partylist`, `pres`, `vice`, `sec`, `trea`, `aud`, `pio1`, `pio2`, `pio3`, `pio4`, `po1`, `po2`, `po3`, `g7_rep`, `g8_rep`, `g9_rep`, `g10_rep`, `g11_rep`, `g11_strand`, `g12_rep`, `g12_strand`, `date_time`, `slogan`, `projects`)

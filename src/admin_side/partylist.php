@@ -462,16 +462,29 @@ if (!isset($_SESSION['email'])) {
         <?php
         include("../includes/script.php");
         ?>
-        <script src="../sweetalert.min.js"></script>
+        <!-- SweetAlert2 CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <!-- SweetAlert2 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <style>
+            .swal-wide {
+                width: 500px !important;
+            }
+        </style>
 
         <?php
-        if (isset($_SESSION['[status]']) && $_SESSION['[status]'] != '') {
+        if (isset($_SESSION['[status]'])) {
           ?>
           <script>
-            swal({
-              title: "<?php echo $_SESSION['[status]']; ?>",
-              icon: "<?php echo $_SESSION['[status_code]']; ?>",
-              button: "<?php echo $_SESSION['[status_button]']; ?>",
+            document.addEventListener('DOMContentLoaded', function() {
+              Swal.fire({
+                title: "<?php echo $_SESSION['[status]']; ?>",
+                icon: "<?php echo $_SESSION['[status_code]']; ?>",
+                confirmButtonText: "<?php echo $_SESSION['[status_button]']; ?>",
+                customClass: {
+                  popup: 'swal-wide'
+                }
+              });
             });
           </script>
           <?php
